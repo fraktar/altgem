@@ -79,14 +79,69 @@ git add .
 git commit -m "initial push"
 git push origin master
 ```
-## 7 Install Heroku CLI & log-in to your account
+
+## 7 Create a new Heroku app first
+
+## 8 Install Heroku CLI & log-in to your account
 
 ```
 wget -qO- https://cli-assets.heroku.com/install-ubuntu.sh | sh
 heroku login
 ```
 
+## 9 Add the remote (replace repo with your actual repository name)
 
-*Work in progress*
+```
+heroku git:remote -a repo
+```
+
+Success:
+> set git remote heroku to https://git.heroku.com/repo.git
+
+## 10 Set up database and seed data 
+
+```
+heroku run rake db:migrate db:seed
+```
+Now you can log-in with:
+
+> email: admin@<app name>.com
+> password: 123456
+
+## 11 Set up email via the Mailgun Heroku add-on
+
+## 11.1 Set the APP_HOST environment variable on Heroku so that the app knows its domain:
+
+```
+heroku config:set APP_HOST='e.g. myapp.herokuapp.com'
+```
+## 11.2 Enable Mailgun add-on (free plan)
+
+```
+heroku addons:create mailgun:starter
+```
+
+## 11.3 Copy the following snippet into config/environments/production.rb:
+
+```
+config.action_mailer.perform_deliveries = true
+config.action_mailer.raise_delivery_errors = true
+config.action_mailer.delivery_method = :smtp
+config.action_mailer.smtp_settings = {
+    domain: Settings.hostname,
+    port: ENV['MAILGUN_SMTP_PORT'],
+    address: ENV['MAILGUN_SMTP_SERVER'],
+    user_name: ENV['MAILGUN_SMTP_LOGIN'],
+    password: ENV['MAILGUN_SMTP_PASSWORD'],
+    authentication: :plain,
+}
+```
+
+Set the `domain` in the snippet above to your domain.
+
+Commit and push to Heroku. You're all set!
+
+
+
 
 
