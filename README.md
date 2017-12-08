@@ -79,7 +79,13 @@ git add .
 git commit -m "initial push"
 git push origin master
 ```
-## 7 Connecting Heroku
+## 7 Install Heroku CLI & log-in to your account
+
+```
+wget -qO- https://cli-assets.heroku.com/install-ubuntu.sh | sh
+heroku login
+```
+
 
 *Work in progress*
 
