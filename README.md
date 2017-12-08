@@ -1,27 +1,32 @@
-# README
+# README: Pre-requirements, Installation and Deployment
 
-**Pre-requirements**
+**A - Pre-requirements**
 
 * Ruby 2.3+
 * Git
 * PostgreSQL
 
-#**Installation (Cloud9)**
+**B - Installation (Cloud9)**
 
-##1 Install packages required to compile Thredded dependencies by running:
+## 1 Install packages required to compile Thredded dependencies by running:
 
-> sudo apt-get install autoconf automake bison build-essential gawk git \
-  libffi-dev libgdbm-dev libgmp-dev libncurses5-dev libpq-dev libreadline6-dev \
-  libsqlite3-dev libtool libyaml-dev nodejs pkg-config ruby sqlite3
+```
+sudo apt-get install autoconf automake bison build-essential gawk git \
+libffi-dev libgdbm-dev libgmp-dev libncurses5-dev libpq-dev libreadline6-dev \
+libsqlite3-dev libtool libyaml-dev nodejs pkg-config ruby sqlite3
+```
 
-###1.5 (optional) If you get an error: *Unable to fetch some archives, maybe run apt-get update or try with --fix-missing?*
+### 1.5 (optional) If you get an error: *Unable to fetch some archives, maybe run apt-get update or try with --fix-missing?*
 
 Run: 
-> sudo apt-get update
+```
+sudo apt-get update
+```
 
-##2 Install the gem and create your app:
-
-> gem install thredded_create_app
+## 2 Install the gem and create your app:
+```
+gem install thredded_create_app
+```
 
 You should see an output similar to:
 
@@ -29,28 +34,53 @@ You should see an output similar to:
 Successfully installed thredded_create_app-0.1.22
 1 gem installed
 
-##3 Start PostgreSQL on Cloud9
+## 3 Start PostgreSQL on Cloud9
 
 Run:
-> sudo service postgresql start
+```
+sudo service postgresql start
+```
 
 Success output:
 
 >  * Starting PostgreSQL 9.3 database server
    ...done.
 
-##4 Create your app
+## 4 Create your app
 
 Run:
-> thredded_create_app app
+```
+thredded_create_app app
+```
 
 Success:
 > All done! 🌟
 
 Escape with CTRL+C, cd into the app and run it on Cloud9:
-
-> cd app
-> rails s -b $IP -p $PORT
+```
+cd app
+rails s -b $IP -p $PORT
+```
 
 Point your browser to *http://workspacename-username.c9users.io/* (use your workspace name and user) to preview your application.
+
+**C - Deployment (Github + Heroku)**
+
+## 5 Create a git repository and add it:
+
+```
+git remote add origin https://github.com/username/repo.git
+```
+
+## 6 Initial push
+
+```
+git add .
+git commit -m "initial push"
+git push origin master
+```
+## 7 Connecting Heroku
+
+*Work in progress*
+
 
