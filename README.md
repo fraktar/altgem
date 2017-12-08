@@ -141,6 +141,13 @@ Set the `domain` in the snippet above to your domain.
 
 Commit and push to Heroku. You're all set!
 
+If you get an error similar to:
+
+> remote: Running: rake assets:precompile remote: rake aborted! remote: NameError: undefined local variable or method
+>  ! [remote rejected] master -> master (pre-receive hook declined)
+error: failed to push some refs to 'https://git.heroku.com/repo.git'
+
+You probably entered the domain name incorrectly in the `production.rb` file. Correct format: 'http://repo.herokuapp.com'.
 
 
 
